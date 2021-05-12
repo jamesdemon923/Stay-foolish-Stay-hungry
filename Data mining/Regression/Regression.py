@@ -53,9 +53,9 @@ poly_reg2 = PolynomialRegression(2)
 poly_reg2.fit(x_train,y_train)
 y_predict = poly_reg2.predict(x_test)
 #定义测试指标
-R2=r2_score(y_test, y_predict)
+R2=(y_test, y_predict)
 yr=np.array((y_predict-y_test))
-RMSE=(mean_squared_error(y_test,y_predict))**0.5
+RMSE=(y_test,y_predict)**0.5
 print(RMSE,R2)
 
 #保存模型
