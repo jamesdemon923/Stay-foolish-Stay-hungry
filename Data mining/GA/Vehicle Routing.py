@@ -398,7 +398,7 @@ if __name__ == '__main__':
     wait_time_cost = 0.5  # 等待单位时间成本
     delay_time_cost = 1.5  # 延误单位时间成本
     # 遗传算法参数设置
-    iteration_num = 3000  # 迭代次数
+    iteration_num = 2000  # 迭代次数
     popsize = 100  # 种群大小
     chrom_length = 25  # 染色体基因位点数
     prob_cross = 0.25  # 交叉概率
