@@ -38,6 +38,7 @@ void Previous::showPreviousMoves() const {
 		}
 		cout << endl;
 	}
+	cout << "\"Press Enter to continue\"" << endl;
 	cin.ignore(10000, '\n');
 }
 
