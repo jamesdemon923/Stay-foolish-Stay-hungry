@@ -10,17 +10,17 @@
 		cerr << "test A" << endl;
 		OnlineDating s;
 		cerr << "test B" << endl;
-		s.makeMatch(0, IntWrapper(10));
+		s.makeMatch("J", "Xu", IntWrapper(10));
 		cerr << "test C" << endl;
-		s.makeMatch(0, IntWrapper(20));
+		s.makeMatch("C", "Jiang", IntWrapper(20));
 		cerr << "test D" << endl;
 		OnlineDating s2;
 		cerr << "test E" << endl;
-		s2.makeMatch(0, IntWrapper(30));
+		s2.makeMatch("D", "Wang", IntWrapper(30));
 		cerr << "test F" << endl;
 		s2 = s;
 		cerr << "test G" << endl;
-		s2.makeMatch(0, IntWrapper(40));
+		s2.makeMatch("X", "Xu", IntWrapper(40));
 		cerr << "test H" << endl;
 	}
 
