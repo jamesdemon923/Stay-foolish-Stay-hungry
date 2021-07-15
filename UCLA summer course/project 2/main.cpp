@@ -13,62 +13,42 @@ void myTests()
 	assert(a.noMatches() == true);
 	assert(a.howManyMatches() == 0);
 	assert(a.someoneAmongMatches("James", "Xu") == false);
-	int placeholder = -1;
-	assert(a.lookA5Matches("James", "Xu", placeholder) == false);
+	string placeholder = "-1";
 	string s1 = "Hi";
 	string s2 = "Hello";
+	assert(a.lookA5Matches("James", "Xu", placeholder) == false);
 	assert(a.confirmMatch(-1, s1, s2, placeholder) == false);
 	assert(s1 == "Hi");
 	assert(s2 == "Hello");
-	assert(placeholder = -1);
 
 	//the next 4 test sets focus on adding by last name
 	
 	//adding one person named "AAA BBB" with value "2"
-	assert(a.makeOrTransform("AAA", "BBB", 2) == true);
+	assert(a.makeOrTransform("AAA", "BBB", "2") == true);
 	assert(a.noMatches() == false);
 	assert(a.howManyMatches() == 1);
 	assert(a.someoneAmongMatches("AAA", "BBB") == true);
 
-	//check to make sure you can't add these manz
-	assert(a.makeOrTransform("AAA", "BBB", 2) == false);
-	assert(a.makeOrTransform("AAA", "BBB", 4) == false);
-
-
 	//adding a second person named "BBB AAA" with value "1"
 	//this specifically tests for "adding at front"
-	assert(a.makeOrTransform("BBB", "AAA", 1) == true);
+	assert(a.makeOrTransform("BBB", "AAA", "1") == true);
 	assert(a.noMatches() == false);
 	assert(a.howManyMatches() == 2);
-	assert(a.makeOrTransform("BBB", "AAA") == true);
-
-	//check to make sure you can't add these manz
-	assert(a.makeOrTransformr("BBB", "AAA", 1) == false);
-	assert(a.makeOrTransform("BBB", "AAA", 4) == false);
-
+	assert(a.someoneAmongMatches("BBB", "AAA") == true);
 
 	//adding a third person named "AAA DDD" with value "4"
 	//this specifically tests for "adding at rear"
-	assert(a.makeOrTransform("AAA", "DDD", 4) == true);
+	assert(a.makeOrTransform("AAA", "DDD", "4") == true);
 	assert(a.noMatches() == false);
 	assert(a.howManyMatches() == 3);
 	assert(a.someoneAmongMatches("AAA", "DDD") == true);
 
-	//check to make sure you can't add these manz
-	assert(a.makeOrTransform("AAA", "DDD", 3) == false);
-	assert(a.makeOrTransform("AAA", "DDD", 4) == false);
-
-
 	//adding a fourth person named "BBB CCC" with value "3"
 	//this specifically tests for "adding between two established nodes"
-	assert(a.makeOrTransform("BBB", "CCC", 3) == true);
+	assert(a.makeOrTransform("BBB", "CCC", "3") == true);
 	assert(a.noMatches() == false);
 	assert(a.howManyMatches() == 4);
 	assert(a.someoneAmongMatches("BBB", "CCC") == true);
-
-	//check to make sure you can't add these manz
-	assert(a.makeOrTransform("BBB", "CCC", 3) == false);
-	assert(a.makeOrTransform("BBB", "CCC", 4) == false);
 
 	a.dump();
 
@@ -76,54 +56,40 @@ void myTests()
 
 	//adding a fifth person named "AAA AAA" with value "0"
 	//this specifically tests for "adding at start based on FIRST name
-	assert(a.makeOrTransform("AAA", "AAA", 0) == true);
+	assert(a.makeOrTransform("AAA", "AAA", "0") == true);
 	assert(a.noMatches() == false);
 	assert(a.howManyMatches() == 5);
 	assert(a.someoneAmongMatches("AAA", "AAA") == true);
 
-	//check to make sure you can't add these manz
-	assert(a.makeOrTransform("AAA", "AAA", 0) == false);
-	assert(a.makeOrTransform("AAA", "AAA", 4) == false);
-
-
 	//adding a sixth person named "CCC AAA" with value "11"
 	//this specifically tests for "adding at start based on FIRST name
-	assert(a.makeOrTransform("CCC", "AAA", 11) == true);
+	assert(a.makeOrTransform("CCC", "AAA", "11") == true);
 	assert(a.noMatches() == false);
 	assert(a.howManyMatches() == 6);
 	assert(a.someoneAmongMatches("CCC", "AAA") == true);
 
-	//check to make sure you can't add these manz
-	assert(a.makeOrTransform("CCC", "AAA", 11) == false);
-	assert(a.makeOrTransform("CCC", "AAA", 4) == false);
-
-
 	//adding a seventh person named "AAA CCC" with value "33"
 	//this specifically tests for "adding at start based on FIRST name
-	assert(a.makeOrTransform("AAA", "CCC", 33) == true);
+	assert(a.makeOrTransform("AAA", "CCC", "33") == true);
 	assert(a.noMatches() == false);
 	assert(a.howManyMatches() == 7);
 	assert(a.someoneAmongMatches("AAA", "CCC") == true);
-
-	//check to make sure you can't add these manz
-	assert(a.makeOrTransform("AAA", "CCC", 33) == false);
-	assert(a.makeOrTransform("AAA", "CCC", 4) == false);
-
+	
 	a.dump();
 	
 
-	int setMe = -1;
+	string setMe = "-1";
 
 	// lookA5Matches
 
 	assert(a.lookA5Matches("James", "Xu", setMe) == false);
-	assert(setMe == -1);
+	assert(setMe == "-1");
 	assert(a.lookA5Matches("AAA", "AAA", setMe) == true);
-	assert(setMe == 0);
+	assert(setMe == "0");
 	assert(a.lookA5Matches("CCC", "AAA", setMe) == true);
-	assert(setMe == 11);
+	assert(setMe == "11");
 	assert(a.lookA5Matches("AAA", "DDD", setMe) == true);
-	assert(setMe == 4);
+	assert(setMe == "4");
 
 
 	// confirmMatch
@@ -132,48 +98,48 @@ void myTests()
 	assert(a.confirmMatch(-1, s3, s4, setMe) == false);
 	assert(s3 == "Hep");
 	assert(s4 == "Me");
-	assert(setMe == 4); //4 = last value from last test set
+    assert(setMe == "4"); //4 = last value from last test set
 	assert(a.confirmMatch(0, s3, s4, setMe) == true);
 	assert(s3 == "AAA");
 	assert(s4 == "AAA");
-	assert(setMe == 0);
+	assert(setMe == "0");
 	assert(a.confirmMatch(5, s3, s4, setMe) == true);
 	assert(s3 == "BBB");
 	assert(s4 == "CCC");
-	assert(setMe == 3);
+	assert(setMe == "3");
 	assert(a.confirmMatch(6, s3, s4, setMe) == true);
 	assert(s3 == "AAA");
 	assert(s4 == "DDD");
-	assert(setMe == 4);
+	assert(setMe == "4");
 	assert(a.confirmMatch(7, s3, s4, setMe) == false);
 	assert(s3 == "AAA");
 	assert(s4 == "DDD");
-	assert(setMe == 4);
+	assert(setMe == "4");
 
 
 	//transformMatch
 
-	assert(a.transformMatch("James", "Xu", 5) == false);
-	assert(a.transformMatch("AAA", "AAA", 100) == true);
-	assert(a.transformMatch("AAA", "AAA", setMe) == true);
-	assert(setMe == 100);
-	assert(a.transformMatch("AAA", "CCC", 200) == true);
+	assert(a.transformMatch("James", "Xu", "5") == false);
+	assert(a.transformMatch("AAA", "AAA", "100") == true);
+	assert(a.lookA5Matches("AAA", "AAA", setMe) == true);
+	assert(setMe == "100");
+	assert(a.transformMatch("AAA", "CCC", "200") == true);
 	assert(a.lookA5Matches("AAA", "CCC", setMe) == true);
-	assert(setMe == 200);
-	assert(a.transformMatch("AAA", "DDD", 300) == true);
+	assert(setMe == "200");
+	assert(a.transformMatch("AAA", "DDD", "300") == true);
 	assert(a.lookA5Matches("AAA", "DDD", setMe) == true);
-	assert(setMe == 300);
+	assert(setMe == "300");
 
 
 	//makeOrTransform
 
 	//making case
-	assert(a.makeOrTransform("DDD", "DDD", 999) == true);
+	assert(a.makeOrTransform("DDD", "DDD", "999") == true);
 	assert(a.howManyMatches() == 8);
 
 	//Transforming case
 
-	assert(a.makeOrTransform("DDD", "DDD", 99) == true);
+	assert(a.makeOrTransform("DDD", "DDD", "99") == true);
 	assert(a.howManyMatches() == 8);
 
 	a.dump();
@@ -247,16 +213,16 @@ void myTests()
 void test1()
 {
 	OnlineDating lakers;
-	lakers.makeMatch("LeBron", "James", 6);
-	lakers.makeMatch("Anthony", "Davis", 3);
-	lakers.makeMatch("Kyle", "Kuzma", 0);
-	lakers.makeMatch("Boogie", "Cousins", 15);
-	lakers.makeMatch("Rajon", "Rondo", 8);
+	lakers.makeMatch("LeBron", "James", "6");
+	lakers.makeMatch("Anthony", "Davis", "3");
+	lakers.makeMatch("Kyle", "Kuzma", "0");
+	lakers.makeMatch("Boogie", "Cousins", "15");
+	lakers.makeMatch("Rajon", "Rondo", "8");
 	for (int n = 0; n < lakers.howManyMatches(); n++)
 	{
 		string first;
 		string last;
-		int val;
+		string val;
 		lakers.confirmMatch(n, first, last, val);
 		cerr << first << " " << last << " " << val << endl;
 	}
@@ -275,11 +241,11 @@ void test2()
 {
 	OnlineDating clippers;
 
-	clippers.makeMatch("Tyrone", "Wallace", -1);
+	clippers.makeMatch("Tyrone", "Wallace", "-1");
 	assert(!clippers.someoneAmongMatches("", ""));
-	clippers.makeMatch("Kawhi", "Leonard", -1);
-	clippers.makeMatch("", "", -1);
-	clippers.makeMatch("Paul", "George", -1);
+	clippers.makeMatch("Kawhi", "Leonard", "-1");
+	clippers.makeMatch("", "", "-1");
+	clippers.makeMatch("Paul", "George", "-1");
 	assert(clippers.someoneAmongMatches("", ""));
 	clippers.blockPreviousMatch("Tyrone", "Wallace");
 	assert(clippers.howManyMatches() == 3 && clippers.someoneAmongMatches("Kawhi", "Leonard") && clippers.someoneAmongMatches("Paul", "George") && clippers.someoneAmongMatches("", ""));
@@ -291,14 +257,14 @@ void test3()
 {
 	OnlineDating x;
 	
-	assert(x.makeMatch("Kevin", "Durant", 7));
-	assert(x.makeMatch("Kyrie", "Irving", 11));
-	assert(x.makeMatch("DeAndre", "Jordan", 6));
+	assert(x.makeMatch("Kevin", "Durant", "7"));
+	assert(x.makeMatch("Kyrie", "Irving", "11"));
+	assert(x.makeMatch("DeAndre", "Jordan", "6"));
 
 	OnlineDating y;
 
-	assert(y.makeMatch("Spencer", "Dinwiddie", 8));
-	assert(y.makeMatch("Kevin", "Durant", 7));
+	assert(y.makeMatch("Spencer", "Dinwiddie", "8"));
+	assert(y.makeMatch("Kevin", "Durant", "7"));
 
 	OnlineDating z;
 
@@ -313,8 +279,8 @@ void test3()
 
 	OnlineDating r;
 
-	assert(r.makeMatch("Spencer", "Dinwiddie", 8));
-	assert(r.makeMatch("Kevin", "Durant", 35));
+	assert(r.makeMatch("Spencer", "Dinwiddie", "8"));
+	assert(r.makeMatch("Kevin", "Durant", "35"));
 
 	assert(mergeMatches(x, r, z) == false);
 	z.dump();
@@ -338,5 +304,5 @@ int main()
 	//test same-list cases
 	///gonna assume this works since he basically gave the answer of using assignment operator
 
-	cerr << "REMOVE DEBUGGING CODE. Change SomeType to string?" << endl << endl;
+	cerr << "Remove DEBUGGING CODE. And input your CODE" << endl << endl;
 }

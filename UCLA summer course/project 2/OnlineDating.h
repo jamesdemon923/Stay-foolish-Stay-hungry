@@ -37,7 +37,7 @@ public:
     // return false (indicating that the name is already in the 
     // list).
 
-    bool transformMatch(const std::string& firstName, const std::string& lastName, const OnlineType & value);
+    bool transformMatch(const std::string& firstName, const std::string& lastName, const OnlineType& value);
     // If the full name is equal to a full name currently in the 
     // list, then make that full name no longer map to the value it 
     // currently maps to, but instead map to the value of the third

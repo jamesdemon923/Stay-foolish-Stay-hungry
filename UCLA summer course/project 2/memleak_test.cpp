@@ -16,11 +16,11 @@
 		cerr << "test D" << endl;
 		OnlineDating s2;
 		cerr << "test E" << endl;
-		s2.makeMatch("D", "Wang", IntWrapper(30));
+		s2.makeMatch("DL", "Wang", IntWrapper(30));
 		cerr << "test F" << endl;
 		s2 = s;
 		cerr << "test G" << endl;
-		s2.makeMatch("X", "Xu", IntWrapper(40));
+		s2.makeMatch("XR", "Xu", IntWrapper(40));
 		cerr << "test H" << endl;
 	}
 
