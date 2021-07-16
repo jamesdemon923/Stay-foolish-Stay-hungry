@@ -1,6 +1,7 @@
 #ifndef OnlineDating_H
 #define OnlineDating_H
 
+#include "memleak.h"
 #include <string>
 
 typedef std::string OnlineType;
@@ -74,7 +75,10 @@ public:
     // position i in the list and return true. Otherwise, leave the 
     // parameters unchanged and return false. (See below for details 
     // about this function.)
- 
+
+    bool insert(IntWrapper(i));
+    //For memleak
+
     void tradeMatches(OnlineDating& other);
     // Exchange the contents of this list with the other one.
 

@@ -292,6 +292,13 @@ bool OnlineDating::confirmMatch(int i, std::string& firstName, std::string& last
 	return false;
 }
 
+bool OnlineDating::insert(IntWrapper(i))
+{
+	IntWrapper() = (IntWrapper(i));
+	return 0;
+}
+//For memleak
+
 void OnlineDating::tradeMatches(OnlineDating& other)
 // Exchange the contents of this list with the other one.
 {
