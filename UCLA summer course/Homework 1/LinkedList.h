@@ -1,19 +1,27 @@
-#pragma once
-#include<string>
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+
+#include <iostream>
+#include <string>
+using namespace std;
+
 typedef std::string ItemType;
 
 struct Node {
 	ItemType value;
-	Node* next;
-	Node(ItemType x):value(x),next(nullptr){}
+	Node *next;
 };
-
 class LinkedList {
 private:
-	Node* head;
+	Node *head;
+
+	//HELPERS
+	void printRev(Node* start) const;
+	void revList(Node* start);
+
 public:
 	// default constructor
-	LinkedList();
+	LinkedList() : head(nullptr) { }
 
 	// copy constructor
 	LinkedList(const LinkedList& rhs);
@@ -26,14 +34,14 @@ public:
 	const LinkedList& operator=(const LinkedList& rhs);
 
 	// Inserts val at the front of the list
-	void insertToFront(const ItemType& val);
+	void insertToFront(const ItemType &val);
 
 	// Prints the LinkedList
 	void printList() const;
 
 	// Sets item to the value at position i in this
 	// LinkedList and return true, returns false if 
-	// there is no element i
+		// there is no element i
 	bool get(int i, ItemType& item) const;
 
 	// Reverses the LinkedList
@@ -44,12 +52,14 @@ public:
 
 	// Appends the values of other onto the end of this
 	// LinkedList.
-	void append(const LinkedList& other);
+	void append(const LinkedList &other);
 
-	// Exchange the contents of this LinkedList with the other 
+	// Exchange the contents of this LinkedList with the other
 	// one.
-	void swap(LinkedList& other);
+	void swap(LinkedList &other);
 
 	// Returns the number of items in the Linked List.
 	int size() const;
 };
+
+#endif
