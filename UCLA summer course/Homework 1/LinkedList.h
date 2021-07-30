@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-typedef std::string ItemType;
+typedef ItemType;
 
 struct Node {
 	ItemType value;

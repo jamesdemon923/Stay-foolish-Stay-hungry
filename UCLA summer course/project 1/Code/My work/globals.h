@@ -1,5 +1,13 @@
+// zion_solution.cpp
+
 #ifndef GLOBALS_H
 #define GLOBALS_H
+
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////
 // Manifest constants
@@ -11,9 +19,9 @@ const int MAXROBOTS = 130;          // max number of robots allowed
 const int MAXSHOTLEN = 5;           // max number of steps you can shoot
 const int INITIAL_ROBOT_HEALTH = 2;
 
-const int UP    = 0;
-const int DOWN  = 1;
-const int LEFT  = 2;
+const int UP = 0;
+const int DOWN = 1;
+const int LEFT = 2;
 const int RIGHT = 3;
 
 ///////////////////////////////////////////////////////////////////////////
@@ -22,12 +30,5 @@ const int RIGHT = 3;
 
 int decodeDirection(char dir);
 void clearScreen();
-
-///////////////////////////////////////////////////////////////////////////
-// Type definitions
-///////////////////////////////////////////////////////////////////////////
-
-class Arena;  // This is needed to let the compiler know that Arena is a
-              // type name, since it's mentioned in the Robot declaration.
 
 #endif
