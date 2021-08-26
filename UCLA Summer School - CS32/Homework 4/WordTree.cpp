@@ -1,4 +1,5 @@
 #include "WordTree.h"
+#include<string>
 using namespace std;
 
 void WordTree::create(WordType v, int number, WordNode*& ptr)
@@ -31,7 +32,6 @@ const WordTree& WordTree::operator=(const WordTree& rhs)
 	if (this != &rhs)
 	{
 		WordTree temp(rhs);
-		//swapWordTree(temp);
 		WordNode* tempPtr = root;
 		root = temp.root;
 		temp.root = tempPtr;
@@ -43,7 +43,9 @@ const WordTree& WordTree::operator=(const WordTree& rhs)
 void WordTree::addHelper(WordType v, WordNode* ptr)
 {
 	if (v == ptr->m_data)
-		ptr->count = ptr->count + 1;
+	{
+		ptr->count++;
+	}
 	else if (v < ptr->m_data)
 	{
 		if (ptr->m_left == nullptr) create(v, 1, ptr->m_left);
@@ -54,13 +56,47 @@ void WordTree::addHelper(WordType v, WordNode* ptr)
 		if (ptr->m_right == nullptr) create(v, 1, ptr->m_right);
 		else addHelper(v, ptr->m_right);
 	}
-	else cout << "Error" << endl;
-
+	else cout << "Add something wrong" << endl;
 }
 
 // Inserts v into the WordTree
 void WordTree::add(WordType v)
 {
+	//process v
+	for (int n = 0; n < v.length(); n++)
+	{
+		if (v[n] >= 'A' && v[n] <= 'Z') continue;
+		else if (v[n] >= 'a' && v[n] <= 'z') continue;
+		else if (v[n] >= '0' && v[n] <= '9') return;
+		else if (v[n] == '\'') continue;
+		else if (v[n] == '-')
+		{
+			if (n == v.length() - 1)
+			{
+				add(v.substr(0, n));
+			}
+			else if (n == 0)
+			{
+				add(v.substr(n + 2, v.length() - n - 2));
+			}
+			else
+			{
+				add(v.substr(0, n));
+				add(v.substr(n + 1, v.length() - n - 1));
+			}
+			return;
+		}
+		else
+		{
+			v = v.erase(n);
+		}
+	}
+
+	for (int i = 0; i < v.length(); i++)
+	{
+		if (v[i] >= 'A' && v[i] <= 'Z') v[i] = v[i] + 32;
+	}
+
 	if (root == nullptr) create(v, 1, root);
 	else addHelper(v, root);
 }
