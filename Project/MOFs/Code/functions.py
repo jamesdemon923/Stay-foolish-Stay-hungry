@@ -41,7 +41,7 @@ def get_labels(data=None, columnName='') -> torch.Tensor:
     得到真实数据的结果集
     :param data: 数据集
     :param columnName: 结果集所在的列的列名
-    :return: 以张量的形式返回结果集
+    :return: 以张量的形式返回真实值y
     '''
     train_labels = torch.tensor(data[columnName].values.reshape(-1, 1), dtype=d2l.float32)
     return train_labels
@@ -57,7 +57,6 @@ def get_net(in_features=0):
 
 
 def log_rmse(net, features, labels):
-    # 为了在取对数时进一步稳定该值，将小于1的值设置为1
     rmse = loss(net(features), labels)
     return rmse.item()
 
@@ -66,7 +65,6 @@ def train(net, train_features, train_labels, test_features, test_labels,
           num_epochs, learning_rate, weight_decay, batch_size):
     train_ls, test_ls = [], []
     train_iter = d2l.load_array((train_features, train_labels), batch_size)
-    net = get_net(train_features.shape[1])
     # 这里使用的是Adam优化算法
     optimizer = torch.optim.Adam(net.parameters(),
                                  lr=learning_rate,
@@ -130,3 +128,24 @@ def draw_scatter(x=None, y=None, length=10, width=8, size=0.5, x_label='', y_lab
     d2l.plt.ylabel(y_label, rotation=0)
     d2l.plt.scatter(x, y, s=size)
     d2l.plt.show()
+
+
+def train_and_pred(train_features, test_features, train_labels, test_data,
+                   num_epochs, lr, weight_decay, batch_size, columnName):
+    net = get_net(train_features.shape[1])
+    train_ls, _ = train(net, train_features, train_labels, None, None,
+                        num_epochs, lr, weight_decay, batch_size)
+    d2l.plot(np.arange(1, num_epochs + 1), [train_ls], xlabel='epoch',
+             ylabel='log rmse', xlim=[1, num_epochs], yscale='log')
+    d2l.plt.show()
+    print(f'train log rmse {float(train_ls[-1]):f}')
+    preds = net(test_features).detach().numpy()
+    num = test_data['filename'].shape[0]
+    d2l.plot(list(range(1, num + 1)), [test_data[columnName], preds],
+             xlabel='', ylabel='APS', xlim=[1, num],
+             legend=['真实值', '预测值'])
+    d2l.plt.rcParams['font.sans-serif'] = 'SimHei'
+    d2l.plt.rcParams['axes.unicode_minus'] = False  # 设置正常显示符号
+    d2l.plt.show()
+    submission = pd.concat([test_data['filename'], pd.Series(preds.reshape(1, -1)[0])], axis=1)
+    submission.to_csv('submission.csv', index=False)
